@@ -6,6 +6,7 @@ import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 
+import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -31,7 +32,9 @@ public class PutFileActor extends AbstractBehavior<String> {
 
     private Behavior<String> onMessage(String data) throws Exception {
         // Write the filtered data to the file at the specified location
-        Files.writeString(Paths.get(filePath), data + "\n", java.nio.charset.StandardCharsets.UTF_8, java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(data);
+        fw.close();
         return this;
     }
 }

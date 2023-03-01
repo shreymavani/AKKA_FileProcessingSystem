@@ -7,6 +7,9 @@ import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class FilterFileActor extends AbstractBehavior<String> {
 
     private final ActorRef<String> putFileActorRef;
@@ -29,7 +32,25 @@ public class FilterFileActor extends AbstractBehavior<String> {
 
     private Behavior<String> onMessage(String data) {
         // Filter the data as required and send it to PutFileActor
-        putFileActorRef.tell(data);
+        String filterData = stringFiltering(data,"Shrey");
+        putFileActorRef.tell(filterData);
         return this;
+    }
+
+    public String stringFiltering(String inputData, String regex) {
+        String[] splitData = inputData.split("\n");
+        String filterData = "";
+//        System.out.println(splitData.length);
+        for (String line : splitData) {
+
+            Pattern pattern = Pattern.compile(regex);            // Compile the pattern
+
+            Matcher matcher = pattern.matcher(line);             // Replace the password with the string ""
+
+            filterData += (matcher.replaceAll("Kuldeep") + "\n");     // Replace the word "password" and password details with the string ""
+        }
+
+        return filterData;
+
     }
 }
