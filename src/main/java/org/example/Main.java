@@ -14,15 +14,15 @@ public class Main {
         ActorSystem<String> system = ActorSystem.create(Behaviors.empty(), "FileProcessingSystem");
 
         ActorRef<String> putFileActorRef = system
-                .systemActorOf(PutFileActor.create("output.txt"), "putFileActor");
+                .systemActorOf(PutFileActor.create("/Users/smavani/INPUT_OUTPUT_FOR_TESTING/OUTPUT/output"), "putFileActor",Props.empty());
 
         ActorRef<String> filterFileActorRef = system
-                .systemActorOf(FilterFileActor.create(putFileActorRef), "filterFileActor");
+                .systemActorOf(FilterFileActor.create(putFileActorRef), "filterFileActor",Props.empty());
 
         ActorRef<String> getFileActorRef = system
-                .systemActorOf(GetFileActor.create(filterFileActorRef), "getFileActor");
+                .systemActorOf(GetFileActor.create(filterFileActorRef), "getFileActor",Props.empty());
 
-        getFileActorRef.tell("input_directory_path");
+        getFileActorRef.tell("/Users/smavani/INPUT_OUTPUT_FOR_TESTING/INPUT");
     }
 }
 
