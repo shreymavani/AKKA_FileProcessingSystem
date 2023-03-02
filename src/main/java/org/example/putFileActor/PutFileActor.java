@@ -1,4 +1,4 @@
-package org.example;
+package org.example.putFileActor;
 
 import akka.actor.typed.Behavior;
 import akka.actor.typed.javadsl.AbstractBehavior;
@@ -7,8 +7,6 @@ import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 
 import java.io.FileWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class PutFileActor extends AbstractBehavior<String> {
 

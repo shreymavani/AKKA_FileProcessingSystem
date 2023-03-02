@@ -1,4 +1,4 @@
-package org.example;
+package org.example.filterFileActor;
 
 import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;

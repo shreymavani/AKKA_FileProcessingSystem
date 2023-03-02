@@ -2,6 +2,9 @@ package org.example;
 
 import akka.actor.typed.*;
 import akka.actor.typed.javadsl.*;
+import org.example.filterFileActor.FilterFileActor;
+import org.example.getFileActor.GetFileActor;
+import org.example.putFileActor.PutFileActor;
 
 
 public class Main {
@@ -21,5 +24,4 @@ public class Main {
         getFileActorRef.tell("/Users/smavani/INPUT_OUTPUT_FOR_TESTING/INPUT");
     }
 }
-
 

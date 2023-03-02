@@ -1,4 +1,4 @@
-package org.example;
+package org.example.getFileActor;
 
 import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;
@@ -11,9 +11,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class GetFileActor extends AbstractBehavior<String> {
 
@@ -80,6 +77,7 @@ public class GetFileActor extends AbstractBehavior<String> {
             }catch (IOException e) {
                 e.printStackTrace();
             }
+            file.delete();
         }
         return this;
     }
